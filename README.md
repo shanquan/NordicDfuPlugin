@@ -57,5 +57,8 @@ startDFU("C3:53:C0:39:2F:99","MI BAND","/data/user/0/com.nordicdfuexample/files/
 ```
 * function fail(message){} 参数message 为字符串
 
+### 代码贡献
+
+wang.wenbin1
 
 
