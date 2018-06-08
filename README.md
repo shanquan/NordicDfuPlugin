@@ -1,37 +1,61 @@
 # NordicDfuPlugin
+基于[Android-DFU-Library](https://github.com/NordicSemiconductor/Android-DFU-Library)开发，仅支持Android，建议使用[cordova-plugin-ble-central-DFUPlugin](https://github.com/fxe-gear/cordova-plugin-ble-central)
 
-#### 项目介绍
-应用于内部APP项目，仅支持android，不会添加IOS。
+## 安装
 
-#### 软件架构
-软件架构说明
+1. cordova plugin add https://gitee.com/shanquane/NordicDfuPlugin.git
+2. src/android/NotificationActivity.java中的`Class.forName("yourPackageID.MainActivity")` className需要对应正确
+
+## 使用
+
+### startDFU
+开始升级，例子
+```js
+startDFU("C3:53:C0:39:2F:99","MI BAND","/data/user/0/com.nordicdfuexample/files/RNFetchBlobTmp4of.zip",succeed,fail)
+```
+
+* function succeed(){} 无参数
+* function fail(message){} 参数message 为字符串
+
+### watchStateChanged
+监控状态变化
+* function succeed(arg){} 
+参数 arg 为json对象，结构如下：
+```js
+{
+    "state":"",
+    "deviceAddress":""
+}
+```
+状态有以下八种
+
+* CONNECTING
+* DFU_PROCESS_STARTING
+* ENABLING_DFU_MODE
+* FIRMWARE_VALIDATING
+* DEVICE_DISCONNECTING
+* DFU_COMPLETED
+* DFU_ABORTED
+* DFU_FAILED
+
+* function fail(message){} 参数message 为字符串
 
 
-#### 安装教程
-
-1. xxxx
-2. xxxx
-3. xxxx
-
-#### 使用说明
-
-1. xxxx
-2. xxxx
-3. xxxx
-
-#### 参与贡献
-
-1. Fork 本项目
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
+### watchProgressChanged
+监控进度变化
+* function succeed(arg){} 
+参数 arg 为json对象，结构如下
+```js
+{
+    "deviceAddress":"",
+    "percent":"",
+    "speed":"",
+    "avgSpeed":"",
+    "currentPart":"",
+    "partsTotal":""
+}
+```
+* function fail(message){} 参数message 为字符串
 
 
-#### 码云特技
 
-1. 使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2. 码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3. 你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4. [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5. 码云官方提供的使用手册 [http://git.mydoc.io/](http://git.mydoc.io/)
-6. 码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)

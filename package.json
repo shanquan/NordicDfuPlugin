@@ -1,0 +1,7 @@
+{
+  "name": "com.byd.wwb.dfu.NordicDfuPlugin",
+  "version": "0.0.1",
+  "description": "Cordova plugin to upgrade NordicDfu devices",
+  "author": "wwb",
+  "license": "MIT"
+}
